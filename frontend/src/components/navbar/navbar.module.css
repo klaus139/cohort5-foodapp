@@ -109,3 +109,25 @@
     margin-left:1rem;
     cursor:pointer;
 }
+
+/* Add this CSS for mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .right {
+        display: none;
+    }
+    .mobileMenu {
+        display: block;
+        padding-top: 20px;
+    }
+    .list {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .listItem {
+        font-size: 20px;
+    }
+}

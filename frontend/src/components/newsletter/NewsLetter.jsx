@@ -13,7 +13,7 @@ const NewsLetter = () => {
                 <input type="text" placeholder='Enter your email...'/>
                 <AiOutlineSend className={classes.sendIcon} />
             </div>
-            <img src={newsphoto} alt='news-photo' className={classes.illustration} />
+            <img src={newsphoto} alt='news' className={classes.illustration} />
 
         </div>
 

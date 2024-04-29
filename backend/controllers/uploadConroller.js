@@ -1,8 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { verifyToken } from '../middleware/verifyToken';
 
-const uploadController = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb)=> {
@@ -13,16 +11,16 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({
+export const upload = multer({
     storage
 })
 
 
-uploadController.post('/image', verifyToken, upload.single('image'), (req, res) => {
+export const uploadImage = async (req, res) => {
     try{
         return res.status(201).json({msg:"successfully uploaded file"})
 
     }catch(error){
         console.log(error.message)
     }
-})
+}

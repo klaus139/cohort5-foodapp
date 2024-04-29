@@ -1,11 +1,7 @@
-import express from "express";
-import Product from "../models/productModel";
-import { verifyToken, verifyTokenAdmin, VerifyTokenAdmin } from "../middleware/verifyToken";
-
-const productController = express.Router();
+import Product from "../models/productModel.js";
 
 //get all products
-productController.get('/', verifyToken, async(req, res) => {
+export const getAllProduct = async(req, res) => {
     try{
         const products = await Product.find(req.query)
         return res.status(200).json(products)
@@ -13,10 +9,10 @@ productController.get('/', verifyToken, async(req, res) => {
     }catch(error){
         console.log(error)
     }
-})
+}
 
 //get one product
-productController.get('/find/:id', verifyToken, async(req, res) => {
+export const getProduct = async(req, res) => {
     try{
         const productId = req.params.id
         const product = await Product.findById(productId);
@@ -28,14 +24,26 @@ productController.get('/find/:id', verifyToken, async(req, res) => {
     }catch(error){
         console.log(error)
     }
-})
+}
 
-productController.post('/', verifyTokenAdmin, async(req, res) => {
-    try{
-        const newProduct = await Product.create({...req.body})
-        return res.status(201).json(newProduct)
+export const createProduct = async (req, res) => {
+  try {
+    
+    const { title, desc, price, img, review, category } = req.body;
 
-    }catch(error){
-        console.log(error)
+    if (!title || !desc || !price || !img || !review || !category) {
+      throw new Error(`fill in the neccessary product information`);
     }
-})
+    const newProduct = await Product.create({
+        title, desc, price, review, img, category
+    });
+    return res.status(201).json({
+      message: "product created successfully",
+      newProduct,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+

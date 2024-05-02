@@ -14,7 +14,7 @@ const NewsLetter = () => {
                 <AiOutlineSend className={classes.sendIcon} />
             </div>
             <img src={newsphoto} alt='news' className={classes.illustration} />
-            <p>sasas</p>
+          
 
         </div>
 

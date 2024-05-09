@@ -35,14 +35,14 @@ const Navbar = () => {
         <nav className={`${classes.navbar}`}>
           {/* logo */}
           <div className={classes.left}>
-          <a href='#home' className={`${classes.logo}`}>C6-FOODS </a>
+          <a href='/' className={`${classes.logo}`}>C6-FOODS </a>
 
           </div>
          
          <div className={classes.center}>
          <ul className={`${classes.navMenu} ${isActive ? classes.active : ''}`}>
             <li onClick={removeActive}>
-              <a href='#home' className={`${classes.navLink}`}>Home</a>
+              <a href='/' className={`${classes.navLink}`}>Home</a>
             </li>
             <li onClick={removeActive}>
               <a href='#contacts' className={`${classes.navLink}`}>Contacts</a>

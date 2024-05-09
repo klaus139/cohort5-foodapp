@@ -1,14 +1,15 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken";
+import ErrorHandler from "../middleware/Errorhandler.js";
 
 
 
 
 export const register =  async(req, res) => {
     try{
-        const {username, email, password} = req.body;
-        if(!username || !email || !password){
+        const {name, email, password} = req.body;
+        if(!name || !email || !password){
             throw new Error('Please fill in all the inputs')
         }
         const isExisting = await User.findOne({email})
@@ -30,13 +31,16 @@ export const register =  async(req, res) => {
 export const login = async(req, res) => {
     try{
         const {email, password} = req.body;
+        if (!email || !password) {
+            return next(new ErrorHandler("please enter email and password", 400));
+          }
         const user = await User.findOne({email}) 
        if(!user){
           throw new Error("User credentials are wrong!")
        }
 
        // 123456, [lkoiuytfdrse5rd6tfgyhijopk[l;]'\[pkojiugyftdrzsdxtfycghu]]
-       const comparePass = await bcrypt.compare(password, user.password)
+       const comparePass = bcrypt.compare(password, user.password)
        if(!comparePass){
         throw new Error("User credentials are wrong!")
        }
@@ -48,6 +52,25 @@ export const login = async(req, res) => {
         
     }catch(error){
         return res.status(500).json(error.message)
+    }
+}
+
+
+
+
+
+export const getCurrentUser = async(req, res) => {
+    try{
+        const userId = req.user?._id;
+        const user = await User.findById(userId);
+        res.status(201).json({
+            success: true,
+            user,
+        })
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({message:"Something went wrong"})
+
     }
 }
 

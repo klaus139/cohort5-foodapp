@@ -1,33 +1,32 @@
-import express from "express";
-import cors from "cors";
-import dotenv from 'dotenv'
-import morgan from 'morgan';
-dotenv.config()
-import connectDB from "./config/db.js";
-import userRouter from './routes/userRoute.js'
-import productRouter from './routes/productRoute.js';
-import { ErrorMiddleWare } from "./middleware/Error.js";
+import express  from "express"
+import cors from 'cors'
+import connectDB from "./config/db.js"
+import userRouter from "./routes/userRoute.js"
+import foodRouter from "./routes/foodRoute.js"
+import 'dotenv/config'
+import cartRouter from "./routes/cartRoute.js"
+import orderRouter from "./routes/orderRouter.js"
 
+// app config
+const app = express()
+const port = 4000
 
-//database
-connectDB();
-  
-
-const app = express();
-
-app.get("/health", async (req, res) => {
-    res.send({ message: "health OK!" });
-  });
-app.use(cors())
-app.use(morgan('dev'))
+// middlewares
 app.use(express.json())
-app.use(express.urlencoded({extended:true}));
-app.use('/images', express.static('public/images'))
-app.use('/api/user', userRouter);
-app.use('/api/product', productRouter);
+app.use(cors())
 
-const port = process.env.PORT || 4000;
+// db connection
+connectDB()
 
-app.use(ErrorMiddleWare) ;
+// api endpoints
+app.use("/api/user", userRouter)
+app.use("/api/food", foodRouter)
+app.use("/images",express.static('uploads'))
+app.use("/api/cart", cartRouter)
+app.use("/api/order",orderRouter)
 
-app.listen(port, () => console.log(`server is live`))
+app.get("/", (req, res) => {
+    res.send("API Working")
+});
+
+app.listen(port, () => console.log(`Server started on http://localhost:${port}`))

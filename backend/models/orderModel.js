@@ -1,28 +1,14 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurant" },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  deliveryDetails: {
-    email: { type: String, required: true },
-    name: { type: String, required: true },
-    addressLine1: { type: String, required: true },
-    city: { type: String, required: true },
-  },
-  cartItems: [
-    {
-      menuItemId: { type: String, required: true },
-      quantity: { type: Number, required: true },
-      name: { type: String, required: true },
-    },
-  ],
-  totalAmount: Number,
-  status: {
-    type: String,
-    enum: ["placed", "paid", "inProgress", "outForDelivery", "delivered"],
-  },
-  createdAt: { type: Date, default: Date.now },
-});
+  userId:{type:String, required:true},
+  items:{type:Array, required:true},
+  amount:{type:Number, required:true},
+  address:{type:Object, required:true},
+  status:{type:String, default:"Food Processing"},
+  data:{type:Date, default:Date.now()},
+  payment:{type:Boolean, default:false},
+},{timestamps:true})
 
-const Order = mongoose.model("Order", orderSchema);
-export default Order;
+const orderModel = mongoose.models.order || mongoose.model("Order", orderSchema);
+export default orderModel;

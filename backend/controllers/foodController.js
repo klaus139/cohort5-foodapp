@@ -34,6 +34,21 @@ const addFood = async (req, res) => {
     }
 }
 
+const getCurrentFood = async(req, res) => {
+    try{
+        const availableFood = await foodModel.findById(req.body.id)
+        if(availableFood.lenght > 0 ){
+            return availableFood.lenght
+        }else{
+            return res.json({
+                message:"No longer available"
+            })
+        }
+
+    }catch(error){
+        console.log(error)
+    }
+}
 // delete food
 const removeFood = async (req, res) => {
     try {

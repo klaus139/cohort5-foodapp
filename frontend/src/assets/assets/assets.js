@@ -34,6 +34,8 @@ import food_20 from './icecream.jpeg'
 import rating from './rating.jpeg'
 import playStore from './googleplay.jpeg'
 import appStore from './appstore.jpeg'
+import plusGreen from './plusgreen.jpeg'
+import cancel from './cancel.jpeg'
 
 
 
@@ -43,7 +45,9 @@ export const assets = {
     cart,
     rating,
     playStore,
-    appStore
+    appStore,
+    plusGreen,
+    cancel
 }
 
 export const menu_list = [

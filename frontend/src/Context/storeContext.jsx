@@ -13,9 +13,24 @@ const StoreContextProvider = (props) => {
 
     const contextValue = {
         menu_list,
-        food_list
+        food_list,
+        url,
+        token,
+        setToken,
+
 
     }
+
+    // const addToCart = async(itemId) => {
+    //     if(!cartItems[itemId]){
+    //         setCartItems((prev) => ({...prev, [itemId]: 1}))
+    //     }else {
+    //         setCartItems((prev) => ({..prev, [itemId]:prev[itemId] + 1}));
+    //     }
+    //     if(token){
+    //         await axios.post
+    //     }
+    // }
 
     const fetchFoodList = async() => {
         const response = await axios.get(url + '/api/food/list');

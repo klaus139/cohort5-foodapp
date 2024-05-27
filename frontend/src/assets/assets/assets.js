@@ -36,6 +36,10 @@ import playStore from './googleplay.jpeg'
 import appStore from './appstore.jpeg'
 import plusGreen from './plusgreen.jpeg'
 import cancel from './cancel.jpeg'
+import profile from './userprofile.jpeg'
+import bagIcon from './shopbag.jpeg'
+import logout from './exit.jpeg'
+import box from './box.jpeg'
 
 
 
@@ -47,7 +51,11 @@ export const assets = {
     playStore,
     appStore,
     plusGreen,
-    cancel
+    cancel,
+    profile,
+    bagIcon,
+    logout,
+    box
 }
 
 export const menu_list = [

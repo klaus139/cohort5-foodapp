@@ -32,7 +32,7 @@ const LoginPopup = ({setShowLogin}) => {
     if(response.data.success){
         setToken(response.data.token)
         localStorage.setItem("token", response.data.token)
-        toast.success("successful")
+        toast.success("success")
         setShowLogin(false)
     }
     else{

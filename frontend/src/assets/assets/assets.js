@@ -40,6 +40,8 @@ import profile from './userprofile.jpeg'
 import bagIcon from './shopbag.jpeg'
 import logout from './exit.jpeg'
 import box from './box.jpeg'
+import plusicon from './plusicon.jpeg'
+import minus from './pause.jpeg'
 
 
 
@@ -55,7 +57,9 @@ export const assets = {
     profile,
     bagIcon,
     logout,
-    box
+    box,
+    plusicon,
+    minus
 }
 
 export const menu_list = [

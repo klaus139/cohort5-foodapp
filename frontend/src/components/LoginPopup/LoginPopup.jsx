@@ -14,6 +14,8 @@ const LoginPopup = ({setShowLogin}) => {
     email:"",
     password:""
   })
+
+  //console.log
  
 
   
@@ -22,10 +24,13 @@ const LoginPopup = ({setShowLogin}) => {
     e.preventDefault();
     
     let new_url = url
+
+
     if(currState === "Login"){
         new_url += '/api/user/login'
     }else{
         new_url += "/api/user/register"
+   
     }
     const response = await axios.post(new_url, data);
 

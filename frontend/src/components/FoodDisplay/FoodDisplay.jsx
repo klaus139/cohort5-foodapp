@@ -18,7 +18,7 @@ const FoodDisplay = ({ category }) => {
       <div className="food-display-list">
         {food_list.slice(startIndex, endIndex).map((item) => {
           if (category === "All" || category === item.category) {
-            return <FoodItem key={item._id} image={item.image} name={item.name} desc={item.description} price={item.price} />
+            return <FoodItem key={item._id} image={item.image} name={item.name} desc={item.description} price={item.price} id={item._id} />
           }
         })}
       </div>

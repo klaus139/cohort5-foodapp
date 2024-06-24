@@ -1,15 +1,15 @@
 import { createContext, useEffect, useState } from "react";
+import { food_list, menu_list } from "../assets/assets";
 import axios from "axios";
-import { menu_list, food_list } from "../assets/assets/assets";
-
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
     const url = "http://localhost:4000"
-    //const [food_list, setFoodList] = useState([]);
+    const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
+
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -35,11 +35,7 @@ const StoreContextProvider = (props) => {
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 let itemInfo = food_list.find((product) => product._id === item);
-                if (itemInfo) {  // Check if itemInfo is not undefined
-                    totalAmount += itemInfo.price * cartItems[item];
-                } else {
-                    console.warn(`Item with ID ${item} not found in food_list`);
-                }
+                totalAmount += itemInfo.price * cartItems[item];
             }
         }
         return totalAmount;
@@ -71,7 +67,7 @@ const StoreContextProvider = (props) => {
         food_list,
         menu_list,
         cartItems,
-         addToCart,
+        addToCart,
         removeFromCart,
         getTotalCartAmount,
         token,
@@ -85,6 +81,7 @@ const StoreContextProvider = (props) => {
             {props.children}
         </StoreContext.Provider>
     )
+
 }
 
 export default StoreContextProvider;
